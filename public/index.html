@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SRS : Employee Details</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="css/style1.css">
+  <link rel="stylesheet" href="css/MenuStyle.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/tabcontent.css" type="text/css" />
+ <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+</head>
+<body>
+   <script type="text/x-handlebars" id="login">
+    <div class="login">
+    <div class="login-screen">
+      <div class="app-title">
+        <h1>Login</h1>
+      </div>
+
+      <div class="login-form">
+        <div class="control-group">
+        <input type="text" class="LoginInput" value="" placeholder="Username" id="txtUserName">
+        <label class="login-field-icon fui-user" for="login-name"></label>
+        </div>
+
+        <div class="control-group">
+        <input type="password" class="LoginInput" value="" placeholder="Password" id="txtPassword">
+        <label class="login-field-icon fui-lock" for="login-pass"></label>
+        </div>
+
+        <a class="btn btn-primary btn-large btn-block" {{action 'fnLogin'}}>login</a>
+        <a class="login-link" href="#">Lost your password?</a>
+      </div>
+    </div>
+  </div>
+  </script>
+  <script type="text/x-handlebars" id="home">
+    <div class="header">
+    <h1> SRS BUSINESS SOLUTIONS PVT LTD </h1>
+    </div>
+    <div class="navbar">
+
+      <div class="navbar-inner">
+        <ul class="nav" style="float:right;">
+        <nav id="primary_nav_wrap">
+          <ul>
+             <li>
+                {{#view 'UserName'}}
+               <span class="EmpName" id="spnUserName"></span>
+               {{/view}}
+             </li>
+            <li><a href="#"><img id="imgUser" style="height:25x;width:25px;" src="Images/User.png"/></a>
+              <ul>
+                <li>{{#link-to 'employees'}}Profile{{/link-to}}</li>
+                  {{#view 'AdminCheck'}}
+                    {{#link-to 'employee' id="hypAdmin"}}Admin{{/link-to}}
+                  {{/view}}
+                <li><a href="#"{{action 'fnLogout'}}>Logout</a></li
+              </ul>
+            </li>
+          </ul>
+          </nav>
+        </ul>
+      </div>
+    </div>
+    <div class="DivOutlet">
+      {{outlet}}
+    </div>
+      
+       <div class="footer">
+        <h4>Copyright SRS BUSINESS SOLUTIONS PVT LTD </h4>
+   </div>
+  </script>
+  <script type="text/x-handlebars" id="welcome">
+   <div class="container">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+              <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <img src="Images/image1.jpg" alt="Chania" width="460" height="345">
+              </div>
+
+              <div class="item">
+                <img src="Images/image2.jpg" alt="Chania" width="460" height="345">
+              </div>
+            
+              <div class="item">
+                <img src="Images/image3.jpg" alt="Flower" width="460" height="345">
+              </div>
+
+              <div class="item">
+                <img src="Images/image4.jpg" alt="Flower" width="460" height="345">
+              </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" style="width:50px;margin-top:100px;" href="#myCarousel" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">P</span>
+            </a>
+            <a class="right carousel-control" style="width:50px;margin-top:100px;" href="#myCarousel" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">N</span>
+            </a>
+          </div>
+        </div>
+  </script>
+
+    <script type="text/x-handlebars" id="CompleteInfo">
+     <h4>Welcome Employees </h4>
+     <div id="DivMainMenu">
+      <ul>
+       <li>{{#link-to 'employees'}}Employee Details{{/link-to}}</li>
+        <li>{{#link-to 'education'}}Education Details{{/link-to}}</li>
+        <li><a href="#">Experience</a></li>
+        <li><a href="#">Skills</a></li>
+      </ul>
+     </div>
+    <div class="DivOutlet">
+      {{outlet}}
+    </div>
+
+    </script>
+
+  <script type="text/x-handlebars" id="about">
+    <div class='about'>
+      <p>
+        Yehuda Katz is a member of the <a href="http://emberjs.com">Ember.js</a>, <a href="http://rubyonrails.org">Ruby on Rails</a>
+        and <a href="http://www.jquery.com">jQuery</a> Core Teams; he spends his daytime hours at the startup he founded,
+        <a href="http://www.tilde.io">Tilde Inc.</a>.
+      </p>
+
+      <p>
+        Yehuda is co-author of best-selling <a href="http://affiliate.manning.com/idevaffiliate.php?id=485_176">jQuery in Action</a> and
+        <a href="http://affiliate.manning.com/idevaffiliate.php?id=485_145">Rails 3 in Action</a>.
+      </p>
+
+      <p>
+        He spends most of his time hacking on open source—his main projects, along with others, like <a href="https://github.com/wycats/thor">Thor</a>,
+        <a href="http://www.handlebarsjs.com">Handlebars</a> and <a href="https://github.com/carlhuda/janus">Janus</a>—or traveling the world doing evangelism work.
+      </p>
+
+      <p>He can be found on Twitter as <a href="http://www.twitter.com/wycats">@wycats</a>.</p>
+    </div>
+
+    <div class='about'>
+      <p>My name is Tom Dale. I helped create <a href="http://www.emberjs.com/">Ember.js</a>, a JavaScript framework that brings sanity to the web.</p>
+
+      <p>In October of 2011, I co-founded <a href="http://www.tilde.io">Tilde</a> with Yehuda Katz, Leah Silber and Carl Lerche.</p>
+
+      <p>In my spare time I run a cash-for-beer exchange program at many local San Francisco dive bars.</p>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" id="employees">
+      <div id="DivEmpMaster">
+        {{#view 'editEmployee'}}
+        
+            <div class="DivMasterHeader">Master Details <img src="Images/downarrow.png" 
+             id="imgMasterUpdown" class="imgdown" />
+            </div>
+            <div id="DivMaster">
+              <table border="1">
+               <tr><th>EmployeeId</th><th>EmployeeName</th><th>DOJ</th><th>DOE</th><th>Role</th><th>Edit</th><th>Delete</th></tr>
+               <tr>
+               {{#each model}}
+               <td><label ID="lblEmpId"  class="editableM" > {{emp_rid}}</label></td>
+                <td><label ID="lblEmpName"  class="editableM" > {{emp_name}}</label></td>
+                <td><label ID="lblDOJ"  class="editableM" > {{doj}}</label></td>
+                <td> <label ID="lblDOE"  class="editableM" > {{doe}}</label></td>
+                <td> <label ID="lblRole"  class="editableM" > {{role}}</label></td>
+                <td><img id="btnMSubmit" src="Images/edit.png" style="width:20px;height:20px;" 
+                 class="edittxt">
+                <img id="btnMDone" src="Images/save.png" style="width:20px;height:20px;"  
+                class="donetxt"  {{action 'doneEditing'}}></td>
+                <td><img id="imgDeleteMaster" src="Images/delete.png" style="width:20px;height:20px;"
+                {{action 'deleteEmployee' this.emp_rid}}> </td>
+                {{/each}}
+               </tr>
+              </table>
+           </div>
+
+           <div class="DivMasterHeader">Personal Details <img src="Images/downarrow.png" 
+             id="imgPerUpdown" class="imgdown" />
+            </div>
+            <div id="DivPersonal">
+               <table border="1">
+               <tr><th>Add1</th><th>Add2</th><th>City</th><th>Country</th><th>ZIP</th><th>DOB</th><th>Blood</th><th>Email</th><th>Mobile</th><th>Edit</th><th>Delete</th></tr>
+               <tr>
+               {{#each model}}
+               <td><label ID="lblPAddr1"  class="editableP" > {{PAddr1}}</label></td>
+                <td><label ID="lblPAddr2"  class="editableP" > {{PAddr2}}</label></td>
+                <td><label ID="lblPCity"  class="editableP" > {{PCity}}</label></td>
+                <td> <label ID="lblPCountry"  class="editableP" > {{PCountry}}</label></td>
+                <td> <label ID="lblPZIP"  class="editableP" > {{PZIP}}</label></td>
+                <td> <label ID="lblPDOB"  class="editableP" > {{DOB}}</label></td>
+                <td> <label ID="lblBlood"  class="editableP" > {{Blood}}</label></td>
+                <td> <label ID="lblPEmail"  class="editableP" > {{PEmail}}</label></td>
+                <td> <label ID="lblPMobile"  class="editableP" > {{Mobile}}</label></td>
+                <td><img id="btnPSubmit" src="Images/edit.png" style="width:20px;height:20px;" 
+                 class="edittxt">
+                <img id="btnPDone" src="Images/save.png" style="width:20px;height:20px;"  
+                class="donetxt"  {{action 'doneEditingPersonal'}}> </td>
+                <td><img id="imgDeletPer" src="Images/delete.png" style="width:20px;height:20px;"
+                {{action 'deletePersonal' this.emp_rid}}> </td>
+                {{/each}}
+               </tr>
+              </table>
+             
+           </div>
+            <div class="DivMasterHeader">Official Details <img src="Images/downarrow.png" 
+             id="imgOffUpdown" class="imgdown" />
+            </div>
+            <div id="DivOfficial">
+                <table border="1">
+               <tr><th>Add1</th><th>Add2</th><th>City</th><th>Country</th><th>ZIP</th><th>WorkPhone</th><th>WorkExt</th><th>Email</th><th>Edit</th><th>Delete</th></tr>
+               <tr>
+               {{#each model}}
+               <td><label ID="lblOAddr1"  class="editableO" > {{OAddr1}}</label></td>
+                <td><label ID="lblOAddr2"  class="editableO" > {{OAddr2}}</label></td>
+                <td><label ID="lblOCity"  class="editableO" > {{OCity}}</label></td>
+                <td> <label ID="lblOCountry"  class="editableO" > {{OCountry}}</label></td>
+                <td> <label ID="lblOZIP"  class="editableO" > {{OZIP}}</label></td>
+                <td> <label ID="lblOWorkPhone"  class="editableO" > {{WorkPhone}}</label></td>
+                <td> <label ID="lblOWorkExt"  class="editableO" > {{WorkExt}}</label></td>
+                <td> <label ID="lblOEmail"  class="editableO" > {{OEmail}}</label></td>
+                <td><img id="btnOSubmit" src="Images/edit.png" style="width:20px;height:20px;" 
+                 class="edittxt">
+                <img id="btnODone" src="Images/save.png" style="width:20px;height:20px;"  
+                class="donetxt"  {{action 'doneEditingOfficial'}}></td>
+                <td><img id="imgDeletOff" src="Images/delete.png" style="width:20px;height:20px;" 
+                 {{action 'deleteOfficial' this.emp_rid}}></td>
+                {{/each}}
+               </tr>
+              </table>
+             
+           </div>
+
+ 
+          {{/view}}
+        
+        </div>
+  
+  </script>
+ <script type="text/x-handlebars" id="education">
+
+   <input type="button" {{action 'addemployeeeducation'}} value="addeducation">
+  
+    <table width="100%">
+      
+      <tr><td><b>Subject</b></td>
+          <td><b>Board</b></td><td><b>From</b></td><td><b>To</b></td><td><b>Percentage</b></td></tr>
+          
+        <tr id="neweducationrecord" style="display:table-column-group;">
+         <td><input type="text" id="addemployeesubject" style="width:150px;"></td>
+          <td><input type="text" id="addemployeeboard" style="width:150px;"></td>
+          <td><input type="text" id="addemployeefrom" style="width:150px;"></td>
+          <td><input type="text" id="addemployeeto" style="width:150px;"></td>
+          <td><input type="text" id="addemployeepercentage" style="width:150px;"></td>
+          <td><img src='Images/save.png' alt='user'  style='width:20px;height:20px;' {{action 'addemployeeeducationdetails'}}></td>
+          <td><img src="Images/delete.png" alt="user" style="width:20px;height:20px;" {{action 'canceladdemployeeeducationdetails'}}></td> 
+        </tr>   
+     
+       {{#each controller.paginatedContent}}
+          <tr>
+          <td><label class="editable{{unbound RID}}">{{Subject}}</label></td>
+          <td><label class="editable{{unbound RID}}">{{Board}}</label></td>
+          <td><label class="editable{{unbound RID}}">{{Dfrom}}</label></td>
+          <td><label class="editable{{unbound RID}}">{{Dto}}</label></td>
+          <td><label class="editable{{unbound RID}}">{{Percentage}}</label></td>
+          <td><img src="Images/edit.png" alt="user" id="editchanges{{unbound RID}}" {{action 'editemployeeeducation' this}} style="width:20px;height:20px;"><img src='Images/save.png' alt='user' id="savechanges{{unbound RID}}" style='width:20px;height:20px;display:none;' {{action 'saveemployeeeducation' this}}></td>
+          <td><img src="Images/delete.png" alt="user" style="width:20px;height:20px;" {{action 'deleteemployeeeducation' this}}></td>     
+        </tr>
+       {{/each}}
+       
+     </table>
+
+    </div>
+
+ {{#view 'Previousnext'}}
+
+<ul class="pagination gui-text">
+<li id="prev" name="prev">{{#link-to "education.page" prevPage }}< Prev{{/link-to}}</li>
+{{#each pages}}
+    {{view 'Pagination' contentBinding="this"}}
+  {{/each}}
+<li id="next" name="next">{{#link-to "education.page" nextPage }}Next >{{/link-to}}</li>
+</ul>
+
+{{/view}}
+</script>
+
+<script type="text/x-handlebars" id="pagination">
+      {{#with view}}
+      {{#link-to 'education.page' page}}
+        {{content.page_id}}
+      {{/link-to}}
+      {{/with}}
+</script>
+ <script type="text/x-handlebars" id="employee">
+      <div id="DivEmpMaster">
+        
+        {{#view 'addEmployee'}}
+        
+            <div class="DivMasterHeader">Master Details <img src="Images/downarrow.png" 
+             id="imgMasterUpdown" class="imgdown" />
+            </div>
+            <div id="DivMaster">
+              <table border="1">
+               <tr><th>EmployeeId</th><th>EmployeeName</th><th>DOJ</th><th>DOE</th><th>Role</th><th>Save</th></tr>
+               <tr>
+
+                <td><input type="text" id="txtEmpId" class="editableM" /></td>
+                <td><input type="text" id="txtEmpName" class="editableM" /></td>
+                <td><input type="text" id="txtDOJ" class="editableM" /></td>
+                <td><input type="text" id="txtDOE" class="editableM" /></td>
+                <td><input type="text" id="txtRole" class="editableM" /></td>
+                <td>
+                <img id="btnMDone" src="Images/save.png" style="width:20px;height:20px;"  
+                class="edittxt" {{action 'addMasterDetails'}}/></td>
+               </tr>
+              </table>
+           </div>
+          <div class="DivMasterHeader">Edit Master Details <img src="Images/downarrow.png" 
+             id="imgEditUpdown" class="imgdown" />
+            </div>
+            <div id="DivEditMaster">
+              <input type="text" id="txtAutoEmp" name="txtsearch" 
+                placeholder="Search employee" />
+              <a href="#" {{action "fnSearchEmp"}}>Seacrh</a>
+              <table border="1" id="tblEdit">
+               <tr><th>EmployeeId</th><th>EmployeeName</th><th>DOJ</th><th>DOE</th><th>Role</th><th>Save</th></tr>
+                {{#if totalpage}}
+                   {{#each paginatedContent}} 
+                   <tr id="tbltr{{unbound RID}}">
+                   <td><label id="lblEmpId{{unbound RID}}" class="editableM">{{Emp_Id}}</label></td>
+                    <td><label id="lblEmpName{{unbound RID}}"  class="editableM">{{Emp_name}}</label></td>
+                    <td><label id="lblDOJ{{unbound RID}}" class="editableM">{{DOJ}}</label></td>
+                    <td><label id="lblDOE{{unbound RID}}"  class="editableM">{{DOE}}</label></td>
+                    <td><label id="lblRole{{unbound RID}}"  class="editableM">{{Role}}</label></td>
+                    <td> <img id="btnMSubmit{{unbound RID}}" src="Images/edit.png" style="width:20px;height:20px;" 
+                     class="edittxt" {{action 'fnSaveEditEmp' this.RID}}/>
+                    <img id="btnMDone{{unbound RID}}" src="Images/save.png" style="width:20px;height:20px;"  
+                    class="donetxt" {{action 'editMasterDetails' this.RID}} />
+                        </td>
+                   </tr>
+               {{/each}}
+                 {{else}}
+                   <tr><td  class="editableM" colspan='6'>
+                   <span class="nodata">No data available</span>
+                   </td></tr>
+                  
+               {{/if}}
+              </table>
+               <div id="navContainer">
+              <ul>
+              {{#if prevPage}}
+              <li><a href="#" {{action "selectPrevPage"}}>Prev</a></li>
+              {{/if}}              
+            
+              {{#each pages}}
+                <li><a href="#" {{action 'goToPage' number}}>{{number}}</a></li>
+              {{/each}}
+               {{#if nextPage}}
+              <li><a href="#" {{action "selectNextPage"}}>Next</a></li>
+              {{/if}}
+              </ul>
+            </div>
+           </div>
+          {{/view}}
+        </div>
+  
+  </script>
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.3.0.js"></script>
+  <script src="http://builds.emberjs.com/tags/v1.8.0/ember.js"></script>
+  <script src="http://builds.emberjs.com/beta/ember-data.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>  
+  <script src="js/pagination.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/model/Model.js"></script>
+  <script src="js/controller/Controller.js"></script>
+  <script src="js/View/Views.js"></script>
+  <script src="js/View/Educationview.js"></script>
+  <script src="js/Logics/Logics.js"></script>
+  <script src="js/libs/validator.min.js"></script>
+  <script src="js/libs/notify.min.js"></script>
+  <script src="js/libs/bootbox.min.js"></script>
+  <script src="js/libs/bootstrap.min.js"></script>
+  <script src="js/libs/xls.min.js"></script>
+  <script src="js/libs/cpexcel.js"></script>
+  <script src="js/libs/knockout-2.3.0.js"></script>
+   <script src="js/libs/tabcontent.js" type="text/javascript"></script>
+
+</body>
+</html>
